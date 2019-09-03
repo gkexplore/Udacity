@@ -1,7 +1,7 @@
 package com.udacity.course3.reviews.controller;
 
-import com.udacity.course3.reviews.entiry.Comment;
-import com.udacity.course3.reviews.entiry.Review;
+import com.udacity.course3.reviews.entity.Comment;
+import com.udacity.course3.reviews.entity.Review;
 import com.udacity.course3.reviews.repository.CommentRepository;
 import com.udacity.course3.reviews.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,6 +59,6 @@ public class CommentsController {
      */
     @RequestMapping(value = "/reviews/{reviewId}", method = RequestMethod.GET)
     public List<Comment> listCommentsForReview(@PathVariable("reviewId") Long reviewId) {
-        return commentRepository.findAllCommentsByReviewId(reviewId);
+        return commentRepository.findAllByReviewId(reviewId);
     }
 }

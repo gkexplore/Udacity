@@ -1,6 +1,8 @@
-package com.udacity.course3.reviews.entiry;
+package com.udacity.course3.reviews.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -12,6 +14,8 @@ public class Product {
     @Column(name = "product_id")
     private Long productId;
 
+    @NotNull(message = "productName must not be null")
+    @Size(min=1, max=500)
     @Column(name = "product_name")
     private String productName;
 

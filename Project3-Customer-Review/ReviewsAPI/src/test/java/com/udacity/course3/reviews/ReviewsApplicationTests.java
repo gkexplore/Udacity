@@ -1,8 +1,8 @@
 package com.udacity.course3.reviews;
 
-import com.udacity.course3.reviews.entiry.Comment;
-import com.udacity.course3.reviews.entiry.Product;
-import com.udacity.course3.reviews.entiry.Review;
+import com.udacity.course3.reviews.entity.Comment;
+import com.udacity.course3.reviews.entity.Product;
+import com.udacity.course3.reviews.entity.Review;
 import com.udacity.course3.reviews.repository.CommentRepository;
 import com.udacity.course3.reviews.repository.ProductRepository;
 import com.udacity.course3.reviews.repository.ReviewRepository;
@@ -89,7 +89,7 @@ public class ReviewsApplicationTests {
 
 		//verify findAllReviewByProductId works fine
 		assertTrue(reviewsRepository.findAll().size()==2);
-		assertTrue(reviewsRepository.findAllReviewsByProductId(getProducts().get(0).getProductId()).get(0).getTitle().equals("Good"));
+		assertTrue(reviewsRepository.findAllByProductId(getProducts().get(0).getProductId()).get(0).getTitle().equals("Good"));
 
 	}
 
@@ -110,7 +110,7 @@ public class ReviewsApplicationTests {
 
 	}
 
-	//verify findAllCommentsByReviewId works fine
+	//verify findAllByReviewId works fine
 	@Test
 	public void givenReviewComments_whenRetrieveByreviewId_thenGetOk(){
 		productRepository.save(getProducts().get(0));
@@ -119,7 +119,7 @@ public class ReviewsApplicationTests {
 		commentRepository.save(getComments().get(0));
 		commentRepository.save(getComments().get(1));
 
-		assertTrue(commentRepository.findAllCommentsByReviewId(getReviews().get(0).getReviewId()).size()==2);
+		assertTrue(commentRepository.findAllByReviewId(getReviews().get(0).getReviewId()).size()==2);
 
 	}
 

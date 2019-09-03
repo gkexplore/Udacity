@@ -1,6 +1,6 @@
 package com.udacity.course3.reviews.controller;
 
-import com.udacity.course3.reviews.entiry.Product;
+import com.udacity.course3.reviews.entity.Product;
 import com.udacity.course3.reviews.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,6 @@ public class ProductsController {
     @RequestMapping(value = "/", method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
     public void createProduct(@Valid @RequestBody Product product) {
-        System.out.println(product.getProductName());
         productRepository.save(product);
     }
 

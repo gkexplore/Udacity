@@ -1,7 +1,7 @@
 package com.udacity.course3.reviews.controller;
 
-import com.udacity.course3.reviews.entiry.Product;
-import com.udacity.course3.reviews.entiry.Review;
+import com.udacity.course3.reviews.entity.Product;
+import com.udacity.course3.reviews.entity.Review;
 import com.udacity.course3.reviews.repository.ProductRepository;
 import com.udacity.course3.reviews.repository.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +41,7 @@ public class ReviewsController {
         Optional<Product> optionalProduct = productRepository.findById(productId);
         if(optionalProduct.isPresent()){
             review.setProduct(optionalProduct.get());
+            System.out.println(optionalProduct.get().getProductId());
             reviewRepository.save(review);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }else{
@@ -56,6 +57,6 @@ public class ReviewsController {
      */
     @RequestMapping(value = "/reviews/products/{productId}", method = RequestMethod.GET)
     public List<Review> listReviewsForProduct(@PathVariable("productId") Long productId) {
-        return reviewRepository.findAllReviewsByProductId(productId);
+        return reviewRepository.findAllByProductId(productId);
     }
 }

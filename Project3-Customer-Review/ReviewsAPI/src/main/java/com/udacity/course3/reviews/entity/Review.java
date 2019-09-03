@@ -1,6 +1,8 @@
-package com.udacity.course3.reviews.entiry;
+package com.udacity.course3.reviews.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -15,6 +17,8 @@ public class Review {
     @Column(name = "like_count")
     private int likeCount;
 
+    @NotNull(message = "title must not be null")
+    @Size(min=1, max=500)
     @Column(name = "title")
     private String title;
 
@@ -22,7 +26,7 @@ public class Review {
     private List<Comment> commentList;
 
     @ManyToOne
-    @JoinColumn(name="product_id", nullable=false)
+    @JoinColumn(name="product_id")
     private Product product;
 
     public Review() {
