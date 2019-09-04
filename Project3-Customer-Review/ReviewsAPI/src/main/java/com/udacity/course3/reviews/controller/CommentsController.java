@@ -1,9 +1,8 @@
 package com.udacity.course3.reviews.controller;
 
-import com.udacity.course3.reviews.entity.Comment;
-import com.udacity.course3.reviews.entity.Review;
-import com.udacity.course3.reviews.repository.CommentRepository;
-import com.udacity.course3.reviews.repository.ReviewRepository;
+import com.udacity.course3.reviews.entity.mongo.MongoComment;
+import com.udacity.course3.reviews.entity.mysql.Comment;
+import com.udacity.course3.reviews.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 /**
  * Spring REST controller for working with comment entity.
@@ -21,10 +19,7 @@ import java.util.Optional;
 public class CommentsController {
 
     @Autowired
-    private ReviewRepository reviewRepository;
-
-    @Autowired
-    private CommentRepository commentRepository;
+    private ReviewService reviewService;
 
     /**
      * Creates a comment for a review.
@@ -38,10 +33,8 @@ public class CommentsController {
      */
     @RequestMapping(value = "/reviews/{reviewId}", method = RequestMethod.POST)
     public ResponseEntity<?> createCommentForReview(@PathVariable("reviewId") Long reviewId, @Valid @RequestBody Comment comment) {
-        Optional<Review> review = reviewRepository.findById(reviewId);
-        if(review.isPresent()){
-            comment.setReview(review.get());
-            commentRepository.save(comment);
+
+        if(reviewService.saveComment(reviewId, comment)){
             return new ResponseEntity<>(HttpStatus.CREATED);
         }else{
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -58,7 +51,7 @@ public class CommentsController {
      * @param reviewId The id of the review.
      */
     @RequestMapping(value = "/reviews/{reviewId}", method = RequestMethod.GET)
-    public List<Comment> listCommentsForReview(@PathVariable("reviewId") Long reviewId) {
-        return commentRepository.findAllByReviewId(reviewId);
+    public List<MongoComment> listCommentsForReview(@PathVariable("reviewId") Long reviewId) {
+        return reviewService.findAllCommentsByReviewId(reviewId);
     }
 }

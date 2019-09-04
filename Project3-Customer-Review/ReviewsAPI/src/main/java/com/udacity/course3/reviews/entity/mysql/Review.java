@@ -1,4 +1,4 @@
-package com.udacity.course3.reviews.entity;
+package com.udacity.course3.reviews.entity.mysql;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

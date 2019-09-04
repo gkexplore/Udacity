@@ -1,8 +1,8 @@
 package com.udacity.course3.reviews;
 
-import com.udacity.course3.reviews.entity.Comment;
-import com.udacity.course3.reviews.entity.Product;
-import com.udacity.course3.reviews.entity.Review;
+import com.udacity.course3.reviews.entity.mysql.Comment;
+import com.udacity.course3.reviews.entity.mysql.Product;
+import com.udacity.course3.reviews.entity.mysql.Review;
 import com.udacity.course3.reviews.repository.CommentRepository;
 import com.udacity.course3.reviews.repository.ProductRepository;
 import com.udacity.course3.reviews.repository.ReviewRepository;
@@ -61,7 +61,7 @@ public class ReviewsApplicationTests {
 	}
 
 
-	//*************************Test for Review Table************************//*
+	//*************************Test for MongoReview Table************************//*
 
 	//verify save review  and findbyid work fine
 	@Test
