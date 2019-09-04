@@ -62,25 +62,9 @@ public class ReviewServiceImpl implements ReviewService {
             Optional<MongoReview> mongoReviewOptional = mongoReviewRepository.findById(reviewId+"");
             if(mongoReviewOptional.isPresent()){
                MongoReview mongoReview =  mongoReviewOptional.get();
-                System.out.println(mongoReview.getId());
+               mongoReview.getCommentList().add(copyComment(comment));
 
-               /* List<MongoComment> mongoCommentList = copyComment(comment);
-                System.out.println(mongoCommentList.size());
-                for (MongoComment mongoComment: mongoCommentList){
-                    mongoReview.addComment(mongoComment);
-                }*/
-               //copy comments to review
-              // mongoReview.setCommentList(mongoCommentList);
-
-               //save review to mongo
-
-              /*  MongoComment mongoComment1 = new MongoComment();
-                mongoComment1.setText("dsfsfsf");
-
-                MongoComment mongoComment2  = new MongoComment();
-                mongoComment2.setText("ghgf");*/
-
-                mongoReview.getCommentList().add(copyComment(comment));
+               //save the review on mongodb along with comment
                mongoReviewRepository.save(mongoReview);
             }
             return true;
@@ -91,7 +75,10 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public List<MongoReview> findAllReviewByProductId(Long productId) {
+        //Get review from mysql by review id
         List<Review> reviewList = reviewRepository.findAllByProductId(productId);
+
+        //return the review list from mongodb
         return getReviewsFromMongo(reviewList);
     }
 
@@ -102,7 +89,6 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     public MongoReview copyReview(Review review){
-        System.out.println(review.getTitle());
         MongoReview mongoReview = new MongoReview();
         mongoReview.setId(review.getReviewId()+"");
         mongoReview.setLikeCount(review.getLikeCount());
@@ -112,12 +98,12 @@ public class ReviewServiceImpl implements ReviewService {
 
     public MongoComment copyComment(Comment comment){
         MongoComment mongoComment = new MongoComment();
-        System.out.println("inside copy comment"+ comment.getText());
         mongoComment.setText(comment.getText());
         return mongoComment;
     }
 
     public List<MongoReview> getReviewsFromMongo(List<Review> reviewList){
+        //Get review ids from mysql and retrieve the reviews from mongo
         List<MongoReview> mongoReviewList = new ArrayList<>();
         for (Review review: reviewList){
             Optional<MongoReview> reviewOptional = mongoReviewRepository.findById(review.getReviewId()+"");

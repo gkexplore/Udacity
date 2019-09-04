@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 
+//Set collection name or else default name will be used
 @Document(collection = "review")
 public class MongoReview {
 
@@ -14,6 +15,7 @@ public class MongoReview {
     private int likeCount;
     private String title;
 
+    //initialize comment list
     private List<MongoComment> commentList = new ArrayList<>();
 
     public MongoReview(){
@@ -64,6 +66,6 @@ public class MongoReview {
 
     @Override
     public String toString(){
-        return "title";
+        return "title:"+this.title+", likeCount:"+this.likeCount;
     }
 }
