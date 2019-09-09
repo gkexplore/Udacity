@@ -6,13 +6,13 @@ This repository contains the below fours projects
 3. Customer review
 4. e-Commerce Application
 
-#1. Chat Room
+**1. Chat Room**
 
 This project demostartes how to use 
       WebSocket for creating a chat application
       Write Selenium Tests for validating the chat application works fine
       
-#2. Car Backend System
+**2. Car Backend System**
 
 This project demonstates how to
       Create microservices
@@ -20,7 +20,7 @@ This project demonstates how to
       Access mocro-services by its name instead of remembering the host and port details
       Use mockito to write integration tests
       
-#3. Customer Review
+**3. Customer Review**
 
 This project demonstartes how to
       Use RDBMS for persisisting the data - MySQL
@@ -28,7 +28,7 @@ This project demonstartes how to
       Write Unit tests using embeded in-memory h2 database
       Write Unit tests using embeded MongoDB 
       
-#3. e-Commerce Application
+**3. e-Commerce Application**
 
 This project demonstarte how to
     Authenticate using JWT token
