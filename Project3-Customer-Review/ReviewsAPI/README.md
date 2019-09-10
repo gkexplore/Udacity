@@ -10,7 +10,7 @@ MySQL and MongoDB need to be installed and configured. Instructions provided sep
 * Product reviews will be stored on MongoDB
 
 ### How to run the application
-mvn springboot:run
+mvn spring-boot:run
 
 ### Reference Documentation
 For further reference, please consider the following sections:
