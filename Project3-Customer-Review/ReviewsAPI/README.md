@@ -2,14 +2,15 @@
 Supports operations for writing reviews and listing reviews for a product but with no sorting or filtering.
 
 ### Prerequisites
-MySQL needs to be installed and configured. Instructions provided separately.
+MySQL and MongoDB need to be installed and configured. Instructions provided separately.
 
-### Getting Started
-* Configure the MySQL Datasource in application.properties.
-* Add Flyway scripts in src/main/resources/db/migration.
-* Define JPA Entities and relationships.
-* Define Spring Data JPA Repositories.
-* Add tests for JPA Repositories.
+### Feature
+* Product details will be stored on MySQL database 
+* Using Flyway for database migration. It helps us to easily revert back the sql changes
+* Product reviews will be stored on MongoDB
+
+### How to run the application
+mvn springboot:run
 
 ### Reference Documentation
 For further reference, please consider the following sections:
